@@ -36,7 +36,7 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
 
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
 
   tag_release:
     needs: [simple_deployment_pipeline]
@@ -49,4 +49,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           DEFAULT_BUMP: patch
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
