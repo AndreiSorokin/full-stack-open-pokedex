@@ -10,5 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Perform Health Check
+        uses: jakejarvis/url-health-check@master
         run: |
           curl -f http://localhost:5000/ || echo "Health check failed"
