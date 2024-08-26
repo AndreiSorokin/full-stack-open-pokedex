@@ -1,0 +1,14 @@
+name: Periodic Health Check
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Perform Health Check
+        run: |
+          curl -f http://localhost:5000/ || echo "Health check failed"
